@@ -9,6 +9,7 @@ const baseConfig = require('./webpack.base.config')
 const pageArr = require('./webpack/page-entries.config.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseConfig.entry).forEach(function (name) {
@@ -25,7 +26,8 @@ const plugins = [
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin(util.assetsPath('css/[name].css'))
 ]
 
 pageArr.forEach((page) => {

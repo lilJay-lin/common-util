@@ -10,7 +10,8 @@ module.exports = {
     components: path.resolve(dirVars.SRC_PATH, './public/components'),
     layout: path.resolve(dirVars.SRC_PATH, './public/layout'),
     pages: path.resolve(dirVars.SRC_PATH, './pages/' + config.baseDirectory),
-    common: path.resolve(dirVars.SRC_PATH, './public/common')
+    common: path.resolve(dirVars.SRC_PATH, './public/common'),
+    less: path.resolve(dirVars.SRC_PATH, './public/less'),
   },
   extentions: ['', '.js']
 }
