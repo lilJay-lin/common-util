@@ -4,4 +4,4 @@
  
 2. 编译命令`npm run build`
 
-3. 按版本修复，修改package.json **version**属性
+3. 按版本发布，修改package.json **version**属性
