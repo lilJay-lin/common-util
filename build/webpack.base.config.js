@@ -11,11 +11,5 @@ module.exports = {
   resolve: require('./webpack/resolve'),
 
   /*文件加载模块配置*/
-  module: require('./webpack/modules'),
-
-  /*eslint编码规范*/
-  eslint: require('./webpack/eslint'),
-
-  /*postcss配置*/
-  postcss: require('./webpack/postcss')
+  module: require('./webpack/modules')
 };

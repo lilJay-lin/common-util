@@ -13,5 +13,5 @@ module.exports = {
     common: path.resolve(dirVars.SRC_PATH, './public/common'),
     less: path.resolve(dirVars.SRC_PATH, './public/less'),
   },
-  extentions: ['', '.js']
+  extensions: ['.js']
 }

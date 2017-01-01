@@ -21,10 +21,16 @@ Object.keys(baseConfig.entry).forEach(function (name) {
 * */
 const plugins = [
     new webpack.DefinePlugin({
-        PRODUCTION: false
+      PRODUCTION: false
+    }),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
+    new webpack.SourceMapDevToolPlugin({
+       exclude: ['node_modules/**/*.js']
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-    new webpack.optimize.OccurenceOrderPlugin(),
+    /*new webpack.optimize.OccurenceOrderPlugin(),*/
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin(util.assetsPath('css/[name].css'))
