@@ -19,6 +19,21 @@ module.exports = {
         }
       ]
     },
+    /*js es6*/
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: "babel-loader",
+          options: {
+            "presets": [
+              ["es2015", { "modules": false }]
+            ]
+          }
+        }
+      ]
+    },
     /*解析css*/
     {
       test: /\.less$/,
