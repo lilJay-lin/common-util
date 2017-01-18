@@ -2,7 +2,7 @@
   "name": "liljay-common-utils",
   "version": "1.0.0",
   "description": "个人常用工具类库",
-  "main": "dist/static/index.js",
+  "main": "dist/static/js/index.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
