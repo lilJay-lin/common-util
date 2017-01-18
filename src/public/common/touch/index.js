@@ -243,11 +243,11 @@ const strategy = {
   }
 }
 
-export const tab = (el, cb) => {
+export const tap = (el, cb) => {
   return dealTouch(strategy)(TAP, el, cb)
 }
 
-export const longTab = (el, cb) => {
+export const longTap = (el, cb) => {
   return dealTouch(strategy)(LONG_TAP, el, cb)
 }
 

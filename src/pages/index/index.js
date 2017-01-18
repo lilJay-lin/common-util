@@ -2,20 +2,20 @@
  * Created by linxiaojie on 2017/1/3.
  */
 import Timeout from 'common/timeout'
-import {tab, longTab, swipeLeft} from 'common/tab'
+import {tap, longTap, swipeLeft} from 'common/tab'
 
 /*
 * tab事件
 * */
-let offTab = tab('a', function (evt) {
-  alert('tab')
+let offTap = tap('a', function (evt) {
+  alert('tap')
   /*
   * 解除事件
   * */
-  offTab()
+  offTap()
 })
-longTab('a', function () {
-  alert('longTab')
+longTap('a', function () {
+  alert('longTap')
 })
 swipeLeft('a', function () {
   alert('swipeLeft')
