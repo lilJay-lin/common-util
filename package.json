@@ -1,6 +1,6 @@
 {
   "name": "liljay-common-utils",
-  "version": "1.0.0",
+  "version": "2.0.0-0",
   "description": "个人常用工具类库",
   "main": "dist/static/js/index.js",
   "scripts": {
