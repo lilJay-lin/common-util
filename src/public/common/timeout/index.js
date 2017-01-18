@@ -2,7 +2,7 @@
  * Created by linxiaojie on 2017/1/9.
  */
 import Event from '../event'
-import {tab} from '../tab'
+import {tap} from '../touch'
 const $ = require('jquery')
 export default class Timeout extends Event {
   constructor ({el = '', disabledClass = 'disabled', text = '发送验证码', disabledCb = (count) => {
@@ -21,7 +21,7 @@ export default class Timeout extends Event {
     me.seconds = seconds
     me._counted = 0
     me.timeout = null
-    me.offTab = null
+    me.offTap = null
     me.init()
   }
   init () {
@@ -29,8 +29,8 @@ export default class Timeout extends Event {
     let $el = me.$el
     $el.removeClass(me.disabledClass)
     $el.text(me.text)
-    me.offTab && me.offTab()
-    me.offTab = tab($el.get(0), function (e) {
+    me.offTap && me.offTap()
+    me.offTap = tap($el.get(0), function (e) {
       e.preventDefault()
       if ($el.hasClass(me.disabledClass)) {
         return

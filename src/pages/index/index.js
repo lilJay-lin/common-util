@@ -2,7 +2,7 @@
  * Created by linxiaojie on 2017/1/3.
  */
 import Timeout from 'common/timeout'
-import {tap, longTap, swipeLeft} from 'common/tab'
+import {tap, longTap, swipeLeft} from 'common/touch'
 
 /*
 * tab事件
