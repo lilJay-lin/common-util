@@ -1,5 +1,5 @@
 {
-  "name": "common-util",
+  "name": "liljay-common-utils",
   "version": "1.0.0",
   "description": "个人常用工具类库",
   "main": "dist/static/index.js",
@@ -13,6 +13,10 @@
     "loader",
     "image-lazy"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lilJay-lin/common-util"
+  },
   "author": "liljay",
   "license": "ISC",
   "dependencies": {},
