@@ -2,7 +2,7 @@
   "name": "common-util",
   "version": "1.0.0",
   "description": "个人常用工具类库",
-  "main": "index.js",
+  "main": "dist/static/index.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",

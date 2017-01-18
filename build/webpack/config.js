@@ -1,7 +1,7 @@
 /**
  * Created by linxiaojie on 2016/12/23.
  */
-const pkg = require('../../package.json')
+/*const pkg = require('../../package.json')*/
 const dirVars = require('./dir-vars')
 const path = require('path')
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
   assetsSubDirectory: 'static',
   cssRelAssets: '../../',
   build: {
-    buildPath: path.join(dirVars.ROOT_PATH, './dist/' + pkg.version),
+    buildPath: path.join(dirVars.ROOT_PATH, './dist'),
     publicPath: './',
     injectJs: ['http://cdn.bootcss.com/jquery/1.11.2/jquery.js']
   },

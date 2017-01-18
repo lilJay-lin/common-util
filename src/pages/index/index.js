@@ -1,34 +1,19 @@
 /**
- * Created by linxiaojie on 2017/1/3.
+ * Created by linxiaojie on 2017/1/18.
  */
+/*
+* 非jquery依赖
+* */
+import * as util from 'common/util'
+import * as touch from 'common/touch'
+
+/*
+* jquery依赖
+* */
 import Timeout from 'common/timeout'
-import {tap, longTap, swipeLeft} from 'common/touch'
 
-/*
-* tab事件
-* */
-let offTap = tap('a', function (evt) {
-  alert('tap')
-  /*
-  * 解除事件
-  * */
-  offTap()
-})
-longTap('a', function () {
-  alert('longTap')
-})
-swipeLeft('a', function () {
-  alert('swipeLeft')
-})
-
-/*
-* 定时器
-* */
-const timeout = new Timeout({el: '#timeout'})
-timeout.on('start.timecount', () => {
-  console.log('start')
-})
-
-timeout.on('over.timecount', () => {
-  console.log('over')
-})
+module.exports = {
+  util,
+  touch,
+  Timeout
+}

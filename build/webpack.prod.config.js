@@ -17,6 +17,7 @@ module.exports = util.mergeOptions(baseConfig, {
         filename: util.assetsPath('js/[name].js'),
         /*入口文件内部webpack优化生产的文件*/
         chunkFilename: util.assetsPath('[id].chunk.js'),
+        libraryTarget: 'umd'
     },
     /*插件配置*/
     plugins: require('./webpack/plugins'),
