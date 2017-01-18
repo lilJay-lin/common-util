@@ -1,69 +1,72 @@
 /**
  * Created by linxiaojie on 2017/1/9.
  */
+import Event from '../event'
+import {tab} from '../tab'
 const $ = require('jquery')
-export default class Timeout {
-  constructor({el = '', disabledClass = 'disabled', text = '发送验证码', disabledCb = (count) => {
+export default class Timeout extends Event {
+  constructor ({el = '', disabledClass = 'disabled', text = '发送验证码', disabledCb = (count) => {
     return '发送（' + count + '）秒'
   }, seconds = 60}) {
-    super({el, disabledCb, disabledClass, text, seconds})
-    if (options.el === ''){
+    super({})
+    if (el === '') {
       throw new Error('el不能为空')
     }
-    const me = this;
-    me.el = options.el
+    const me = this
+    me.el = el
     me.$el = $(me.el)
     me.disabledClass = disabledClass
     me.text = text
     me.disabledCb = disabledCb
     me.seconds = seconds
-    me._counted = 0;
-    me.timeout = null;
-    me.event = $({});
-    me.init();
+    me._counted = 0
+    me.timeout = null
+    me.offTab = null
+    me.init()
   }
   init () {
-    var me = this,
-      $el = me.$el,
-      type = 'touchend.timecount';
-    $el.removeClass(me.disabledClass);
-    $el.text(me.text);
-    $el.off(type)
-    $el.on(type, function(e){
-      e.preventDefault();
-      if($el.hasClass(me.disabledClass)){
-        return;
+    let me = this
+    let $el = me.$el
+    $el.removeClass(me.disabledClass)
+    $el.text(me.text)
+    me.offTab && me.offTab()
+    me.offTab = tab($el.get(0), function (e) {
+      e.preventDefault()
+      if ($el.hasClass(me.disabledClass)) {
+        return
       }
-      me.start();
+      me.start()
     })
   }
   start () {
-    var me = this,
-      $el = me.$el,
-      disabledClass = me.disabledClass;
-    if($el.hasClass(disabledClass)){
-      return;
+    let me = this
+    let $el = me.$el
+    let disabledClass = me.disabledClass
+    if ($el.hasClass(disabledClass)) {
+      return
     }
-    me._counted = 0;
-    me.trigger('start.timecount');
-    me.count();
+    me._counted = 0
+    me.trigger('start.timecount')
+    me.count()
   }
   restart () {
-    this.init();
+    this.init()
   }
   count () {
-    var me = this, counted = me._counted, $el = me.$el;
-    $el.addClass(me.disabledClass);
-    $el.text(me.disabledCb(me.seconds - counted));
-    me.timeout && clearTimeout(me.timeout);
-    me.timeout = setTimeout($.proxy(function(){
-      if(counted === me.seconds){
-        me.restart();
-        me.trigger('over.timecount');
-      }else{
-        me._counted ++;
-        me.count();
+    let me = this
+    let counted = me._counted
+    let $el = me.$el
+    $el.addClass(me.disabledClass)
+    $el.text(me.disabledCb(me.seconds - counted))
+    me.timeout && clearTimeout(me.timeout)
+    me.timeout = setTimeout($.proxy(function () {
+      if (counted === me.seconds) {
+        me.restart()
+        me.trigger('over.timecount')
+      } else {
+        me._counted ++
+        me.count()
       }
-    }, me), 1000);
+    }, me), 1000)
   }
 }
