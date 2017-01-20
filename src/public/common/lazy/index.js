@@ -111,6 +111,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   }
   let images = queryImage(container, imgSelector)
   const SCROLL_END = 'scrollEnd'
+  const RESIZE = 'resize'
   /*
    * 计算是否展示图片
    * */
@@ -137,6 +138,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   }
   container.addEventListener(SCROLL, dealBySpeed, false)
   window.addEventListener(SCROLL_END, compute, false)
+  window.addEventListener(RESIZE, compute, false)
   /*
   * 初始计算加载
   * */
@@ -148,5 +150,6 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
     removeComputeSpeed()
     container.removeEventListener(SCROLL, dealBySpeed, false)
     window.removeEventListener(SCROLL_END, compute, false)
+    window.removeEventListener(RESIZE, compute, false)
   }
 }
