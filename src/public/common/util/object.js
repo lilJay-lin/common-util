@@ -6,6 +6,7 @@
  * */
 const objectProto = Object.prototype
 const toString = objectProto.toString
+const hasOwnProperty = objectProto.hasOwnProperty
 
 /*
  * 常量定义
@@ -54,4 +55,11 @@ export const proxy = (fn, context) => {
     }
     return fn.apply(cxt, arguments)
   }
+}
+
+/*
+* 是否本身拥有属性
+* */
+export const has = (obj, key) => {
+  return isObject(obj) && hasOwnProperty.call(obj, key) ? 1 : 0
 }

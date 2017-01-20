@@ -1,7 +1,7 @@
 /**
  * Created by linxiaojie on 2017/1/4.
  */
-import {property} from './object'
+import {property, isString, isArrayLike, isObject, isFunction} from './object'
 const R_PAD = 'r_pad'
 const L_PAD = 'l_pad'
 /*
@@ -28,4 +28,12 @@ export const leftPad = (str, len, pad) => {
 }
 export const rightPad = (str, len, pad) => {
   return repeat(R_PAD, str, len, pad)
+}
+
+/*
+* 对象，函数 返回0
+* 数组或者字符串长度超过0，返回1
+* */
+export const isEmpty = (str) => {
+  return isObject(str) || isFunction(str) ? 0 : isArrayLike(str) && str.length > 0 ? 0 : isString(str) && str.length > 0 ? 0 : 1
 }

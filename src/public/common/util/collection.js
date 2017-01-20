@@ -1,9 +1,7 @@
 /**
  * Created by linxiaojie on 2017/1/4.
  */
-import {proxy, isArrayLike} from './object.js'
-const objectProto = Object.prototype
-const hasOwnProperty = objectProto.hasOwnProperty
+import {proxy, isArrayLike, isObject, has} from './object.js'
 /*
  * 循环
  * */
@@ -17,12 +15,12 @@ export const each = (obj, iteratee, context) => {
         break
       }
     }
-  } else {
+  } else if (isObject(obj)){
     var keys = Object.keys(obj)
     var key
     for (i = 0, len = keys.length; i < len; i++) {
       key = keys[i]
-      if (hasOwnProperty.call(obj, key)) {
+      if (has(obj, key)) {
         if (cb(obj[key], key, obj) === false) {
           break
         }
