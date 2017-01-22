@@ -2,20 +2,60 @@
  * Created by linxiaojie on 2017/1/9.
  */
 /*
-* 基于jquery的事件发布订阅
+* 事件发布订阅
 * */
-const $ = require('jquery')
+import {each} from '../util/collection'
+import {isString, isFunction} from '../util/object'
 export default class Event {
   constructor () {
-    this.event = $({})
+    this.events = []
   }
-  on () {
-    this.event.on.apply(this.event, [].slice.call(arguments))
+  on (type, callback, context) {
+    let me = this
+    let events = me.events[type] || (me.events[type] = [])
+    let event = {
+      type,
+      callback,
+      context
+    }
+    events.push(event)
   }
-  off () {
-    this.event.off.apply(this.event, [].slice.call(arguments))
+  off (type, callback, context) {
+    let me = this
+    if (!isString(type)) {
+      console.error('type参数类型错误')
+      return
+    }
+    if (arguments.length === 2 && !isFunction(callback)) {
+      callback = null
+      context = callback
+    }
+    let events = me.events[type]
+    if (events) {
+      let i = events.length - 1
+      let event = null
+      for (; i >= 0; i--) {
+        event = events[i]
+        let eqCtx = !context || event.context === context
+        let eqCb = !callback || event.callback === callback
+        if (eqCb && eqCtx) {
+          events.splice(i, 1)
+        }
+      }
+    }
   }
-  trigger () {
-    this.event.trigger.apply(this.event, [].slice.call(arguments))
+  trigger (type) {
+    let me = this
+    let events = me.events[type]
+    let args = [].slice.call(arguments, 1)
+    if (events) {
+      each(events, ({callback, context}) => {
+        let cxt = context || this
+        callback.apply(cxt, args)
+      })
+    }
+  }
+  getEvent () {
+    return this.events
   }
 }
