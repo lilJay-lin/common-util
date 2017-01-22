@@ -15,7 +15,7 @@ export const each = (obj, iteratee, context) => {
         break
       }
     }
-  } else if (isObject(obj)){
+  } else if (isObject(obj)) {
     var keys = Object.keys(obj)
     var key
     for (i = 0, len = keys.length; i < len; i++) {
