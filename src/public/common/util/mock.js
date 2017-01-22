@@ -4,10 +4,12 @@
 import {isString, isArray} from '../util/object'
 /*
 * 模拟触发scrollEnd事件
-* @el {window | string | nodeType}
+* @param{window | string | nodeType}el
+* @param{boolean} mobile: 是否使用手机模式（检查touchmove）
+* @param{number} radio: 判断scollend的帧数
 * @return {Function} 执行取消scrollEnd事件检测
 * */
-export const mockScrollEnd = (selector) => {
+export const mockScrollEnd = ({selector, mobile = false, radio = 20}) => {
   let el = null
   if (!selector) {
     el = window
@@ -24,6 +26,7 @@ export const mockScrollEnd = (selector) => {
   let diff = 0
   let cancel = 0
   let id = null
+  const SCROLL = mobile ? 'touchmove' : 'scroll'
   let scrollEnd = document.createEvent('HTMLEvents')
   scrollEnd.initEvent('scrollEnd', true, false)
   if (!window.requestAnimationFrame) {
@@ -32,7 +35,7 @@ export const mockScrollEnd = (selector) => {
   const frame = () => {
     if (lastCtr !== ctr) {
       diff++
-      if (diff === 5) {
+      if (diff === radio) {
         window.dispatchEvent(scrollEnd)
         ctr = lastCtr
       }
@@ -41,13 +44,15 @@ export const mockScrollEnd = (selector) => {
       id = requestAnimationFrame(frame)
     }
   }
-  requestAnimationFrame(frame)
-  el.addEventListener('scroll', () => {
+  const scroll = () => {
     lastCtr = ctr
     diff = 0
     ctr++
-  })
+  }
+  requestAnimationFrame(frame)
+  el.addEventListener(SCROLL, scroll, false)
   return () => {
+    el.removeEventListener(SCROLL, scroll, false)
     cancel = 1
     if (window.cancelRequestAnimationFrame) {
       window.cancelRequestAnimationFrame(id)
