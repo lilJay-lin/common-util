@@ -37,23 +37,22 @@ module.exports = {
     /*解析css*/
     {
       test: /\.less$/,
-      use: [
-        {
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: [
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: require('./postcss')
-                }
-              },
-              'less-loader'
-            ],
-            publicPath: config.cssRelAssets
-          })
-        }
-      ]
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: "style-loader",
+        loader: [
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            /*插件配置参数形式有bug使用postcss全局配置文件的方式*/
+/*            options: {
+              ident: 'postcss',
+              plugins: () => [require('autoprefixer')]
+            }*/
+          },
+          'less-loader'
+        ],
+        publicPath: config.cssRelAssets
+      })
       /*include: []*/
     },
     {
