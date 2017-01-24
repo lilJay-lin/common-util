@@ -1,0 +1,91 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+.scroll-container{
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.scroll-content{
+  position: relative;
+  border: 1px solid;
+}
+.scroll-push-bar, .scroll-pull-bar{
+  position: absolute;
+  text-align: center;
+  margin: 0;
+  font-size: 0.3rem;
+  .scroll-bar-to-load,
+  .scroll-bar-load,
+  .scroll-bar-retry,
+  .scroll-bar-actor{
+    margin: 0;
+    line-height:1.2rem;
+  }
+}
+.scroll-pull-bar{
+  top:0;
+  transform: translate3d(0, -100%, 0);
+}
+.scroll-push-bar{
+  bottom:0;
+  transform: translate3d(0, 100%, 0);
+}
+/*
+scroll-bar-to-load：松开加载
+scroll-bar-load：加载中
+scroll-bar-error：加载失败
+scroll-bar-actor: 提示上拉或下拉
+*/
+.scroll-bar-to-load,
+.scroll-bar-load,
+.scroll-bar-retry{
+  display: none;
+}
+.scroll-bar-actor{
+  display: block;
+}
+/*
+ 变更为松开刷新
+*/
+.scroll-bar-to-active {
+  .scroll-bar-actor,
+  .scroll-bar-load,
+  .scroll-bar-retry{
+    display: none;
+  }
+  .scroll-bar-to-load{
+    display: block;
+  }
+}
+/*
+  变更为刷新
+*/
+.scroll-bar-active{
+  .scroll-bar-actor,
+  .scroll-bar-to-load,
+  .scroll-bar-retry{
+    display: none;
+  }
+  .scroll-bar-load{
+    display: block;
+  }
+}
+
+/*
+  变更为加载失败
+*/
+.scroll-bar-error{
+  .scroll-bar-actor,
+  .scroll-bar-to-load,
+  .scroll-bar-load{
+    display: none;
+  }
+  .scroll-bar-retry{
+    display: block;
+  }
+}
