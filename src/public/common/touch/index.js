@@ -13,7 +13,7 @@
  * touchend timestamp
  *
  */
-import {proxy, isString, isArrayLike} from '../util/object'
+import {isString, isArrayLike} from '../util/object'
 import {each} from '../util/collection'
 /*
 * import {each} from '../util/collection'
@@ -61,14 +61,12 @@ const dealTouch = (strategy) => {
     let els = null
     if (isString(selector)) {
       els = document.querySelectorAll(selector)
-    } else if (selector.nodeType) {
+    } else if (selector && selector.nodeType) {
       els = selector
     } else {
       throw new Error('el 参数类型错误，请检查')
     }
     els = isArrayLike(els) ? els : [els]
-
-    const proxyCb = proxy(cb, els)
 
     const touchStart = (evt) => {
       /*
@@ -128,7 +126,7 @@ const dealTouch = (strategy) => {
          * 触发不同的事件
          * */
         if (strategy[type](startTouch, lastTouch)) {
-          proxyCb(evt)
+          cb(evt)
         }
       }
       validateTouch = 0
