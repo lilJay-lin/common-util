@@ -101,7 +101,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   } else {
     if (isString(container)) {
       container = document.querySelector(container)
-    } else if (container.nodeType !== 1) {
+    } else if (container && container.nodeType !== 1) {
       throw new Error('el 参数类型错误，请检查')
     }
     let rect = container.getBoundingClientRect()
