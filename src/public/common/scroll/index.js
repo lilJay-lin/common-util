@@ -91,40 +91,45 @@ export default class Scroll extends MoveDetection {
   }
   bindEvent () {
     let me = this
-    let pullRetry = me.content.querySelector(pullBarSelector + ' .' + retryClass)
-    let pushRetry = me.content.querySelector(pushBarSelector + ' .' + retryClass)
-    touch.tap(pullRetry, () => {
-      me.clickReload('pull')
-    })
-    touch.tap(pushRetry, () => {
-      me.clickReload('push')
-    })
-    me.on(PULL_PUB_OVER, () => {
-      me.pullLoading = 0
-      me.totalMoveY = me.totalMoveY - me.pullHeight
-      transform(me.content, {
-        y: me.totalMoveY,
-        duration: 0
+    if (me.pullBar) {
+      let pullRetry = me.content.querySelector(pullBarSelector + ' .' + retryClass)
+      touch.tap(pullRetry, () => {
+        me.clickReload('pull')
       })
-    })
-    me.on(PUSH_PUB_OVER, () => {
-      me.pushLoading = 0
-      me.totalMoveY = me.totalMoveY + me.pushHeight
-      transform(me.content, {
-        y: me.totalMoveY,
-        duration: 0
+      me.on(PULL_PUB_OVER, () => {
+        me.pullLoading = 0
+        me.totalMoveY = me.totalMoveY - me.pullHeight
+        transform(me.content, {
+          y: me.totalMoveY,
+          duration: 0
+        })
       })
-    })
-    me.on(PULL_PUB_ERROR, () => {
-      me.pullLoading = 2
-      removeClass(me.pullBar, [activeClass, toActiveClass])
-      addClass(me.pullBar, errorClass)
-    })
-    me.on(PUSH_PUB_ERROR, () => {
-      me.pushLoading = 2
-      removeClass(me.pushBar, [activeClass, toActiveClass])
-      addClass(me.pushBar, errorClass)
-    })
+      me.on(PULL_PUB_ERROR, () => {
+        me.pullLoading = 2
+        removeClass(me.pullBar, [activeClass, toActiveClass])
+        addClass(me.pullBar, errorClass)
+      })
+    }
+
+    if (me.pushBar) {
+      let pushRetry = me.content.querySelector(pushBarSelector + ' .' + retryClass)
+      touch.tap(pushRetry, () => {
+        me.clickReload('push')
+      })
+      me.on(PUSH_PUB_OVER, () => {
+        me.pushLoading = 0
+        me.totalMoveY = me.totalMoveY + me.pushHeight
+        transform(me.content, {
+          y: me.totalMoveY,
+          duration: 0
+        })
+      })
+      me.on(PUSH_PUB_ERROR, () => {
+        me.pushLoading = 2
+        removeClass(me.pushBar, [activeClass, toActiveClass])
+        addClass(me.pushBar, errorClass)
+      })
+    }
   }
   destroy () {
     let me = this
@@ -174,7 +179,7 @@ export default class Scroll extends MoveDetection {
        * status 2 : 非刷新，展示了指示器需要隐藏
        * status 3: 刷新，展示完整指示器
        * */
-      if (status === 2) {
+      if (status === 2 || status === 6) {
         totalMoveY = me.fixedTotalMoveY(disY)
         transform(me.content, {
           y: totalMoveY,
@@ -251,22 +256,24 @@ export default class Scroll extends MoveDetection {
   updateDirectBar (disY) {
     let me = this
     let bar = disY > 0 ? me.pullBar : me.pushBar
-    let status = me.getBarStatus(disY)
-    if (status === 4) {
-      removeClass(bar, [toActiveClass, errorClass])
-      addClass(bar, activeClass)
-    } else if (status === 5) {
-      removeClass(bar, [toActiveClass, activeClass])
-      addClass(bar, errorClass)
-    } else if (status === 3) {
-      removeClass(bar, [activeClass, errorClass])
-      addClass(bar, toActiveClass)
-    } else if (status === 2) {
-      removeClass(bar, [activeClass, errorClass, toActiveClass])
+    if (bar) {
+      let status = me.getBarStatus(disY)
+      if (status === 4) {
+        removeClass(bar, [toActiveClass, errorClass])
+        addClass(bar, activeClass)
+      } else if (status === 5) {
+        removeClass(bar, [toActiveClass, activeClass])
+        addClass(bar, errorClass)
+      } else if (status === 3) {
+        removeClass(bar, [activeClass, errorClass])
+        addClass(bar, toActiveClass)
+      } else if (status === 2) {
+        removeClass(bar, [activeClass, errorClass, toActiveClass])
+      }
     }
   }
   /*
-  * 返回需要触发的状态： 1. 正常滑动 2. 展示下拉或上拉提示 3. 展示松开刷新提示 4. 正在刷新 5 异常
+  * 返回需要触发的状态： 1. 正常滑动 2. 展示下拉或上拉提示 3. 展示松开刷新提示 4. 正在刷新 5 异常 6 无指示节点，不需要做刷新指示处理
   * @param{number}disY: 当前滑动距离
   * @return{number} 1/2/3/4
   * */
@@ -275,14 +282,17 @@ export default class Scroll extends MoveDetection {
     let res = 1
     let dis = me.computedDirectBar(disY)
     let isUp = dis > 0
+    let isDown = dis < 0
     if (dis) {
       /*
       * 已经在刷新
       * */
-      if (isUp && me.pullLoading === 1 || isUp === false && me.pushLoading === 1) {
+      if (isUp && me.pullLoading === 1 || isDown && me.pushLoading === 1) {
         res = 4
-      } else if (isUp && me.pullLoading === 2 || isUp === false && me.pushLoading === 2) {
+      } else if (isUp && me.pullLoading === 2 || isDown && me.pushLoading === 2) {
         res = 5
+      } else if (isUp && me.pullBar === null || isDown && me.pushBar === null) {
+        res = 6
       } else {
         /*
         * 是否展示刷新

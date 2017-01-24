@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   scroll.on('scroll.pull', () => {
     setTimeout(() => {
       scroll.trigger('scroll.pull.error')
-      scroll.destroy()
     }, 2000)
   })
   scroll.on('scroll.push', () => {
