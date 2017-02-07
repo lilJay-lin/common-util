@@ -26,4 +26,14 @@ describe("events.js", () => {
    * */
   event.off('start', start, cxt)
   es['start'].should.be.length(0)
+
+  /*
+  * 一次性事件
+  * */
+  event.once('start.once', function (type) {
+    console.log('start.once is trigger: ' + type + ',' + this.name + '----------')
+  }, cxt)
+  es['start.once'].should.be.length(1)
+  event.trigger('start.once', 'once')
+  es['start.once'].should.be.length(0)
 })

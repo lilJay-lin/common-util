@@ -20,6 +20,17 @@ export default class Event {
     }
     events.push(event)
   }
+  once (type, callback, context) {
+    let me = this
+    let ctx = context || me
+    let one = null
+    one = function () {
+      let args = [].slice.call(arguments)
+      callback.apply(ctx, args)
+      me.off(type, one, ctx)
+    }
+    me.on(type, one, ctx)
+  }
   off (type, callback, context) {
     let me = this
     if (!isString(type)) {
@@ -50,8 +61,8 @@ export default class Event {
     let args = [].slice.call(arguments, 1)
     if (events) {
       each(events, ({callback, context}) => {
-        let cxt = context || this
-        callback.apply(cxt, args)
+        let ctx = context || this
+        callback.apply(ctx, args)
       })
     }
   }
