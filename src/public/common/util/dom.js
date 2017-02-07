@@ -109,3 +109,26 @@ export const css = (el, props) => {
   }
   return this
 }
+
+/*
+* dataset
+* @param{element} el: dom节点
+* @param{Object|String} props: 字符串返回当前节点指定属性值，Object在当前节点上设置dataset
+* */
+export const data = (el, props) => {
+  if (el && el.nodeType !== 1) {
+    console.error('el 参数必须是dom节点')
+    return
+  }
+  if (arguments.length < 2) {
+    console.error('参数个数不能少于2个')
+    return
+  }
+  if (isString(props)) {
+    return el.dataset[props]
+  } else {
+    each(props, (value, prop) => {
+      el.dataset[prop] = value
+    })
+  }
+}
