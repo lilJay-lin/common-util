@@ -35,15 +35,18 @@ const errorClass = 'scroll-bar-error'
 const retryClass = 'scroll-bar-retry'
 
 /*
- * @param{String|Element}容器
- * @param{String|Number}height: 容器高度
+ * @param{String|Element}container容器
+ * @param{String} content 内容节点，默认为‘.scroll-content’
+ * @param{String|Number}height: 内容高度，默认为父容器100%
  * @param{Number}flexRadio 弹性抵抗,出现指示器的移动范围，增加弹性抵抗
  * @param{Number}loadingRadio 提示放开开始刷新的指示器位置（百分比）
  * @param{Number}flexDis 默认弹性距离
+ * @param{boolean}pullDisable 是否禁止下拉
+ * @param{boolean}pushDisable 是否禁止上拉
  *
  * */
 export default class Scroll extends MoveDetection {
-  constructor ({container, content = '.scroll-content', height = null, flexRadio = 0.1, loadingRadio = 0.7, flexDis = 60}) {
+  constructor ({container, content = '.scroll-content', height = null, flexRadio = 0.1, loadingRadio = 0.7, flexDis = 60, pullDisable = false, pushDisable = false}) {
     super({container})
     let me = this
     if (!me.detectCnt) {
@@ -66,9 +69,11 @@ export default class Scroll extends MoveDetection {
      * */
     me.pullBar = me.detectCnt.querySelector('.scroll-pull-bar')
     me.pushBar = me.detectCnt.querySelector('.scroll-push-bar')
-    me.pullHeight = me.pullBar === null ? flexDis : parseInt(css(me.pullBar, 'height'), 10)
-    me.pushHeight = me.pushBar === null ? flexDis : parseInt(css(me.pushBar, 'height'), 10)
+    me.pullHeight = (me.pullBar === null || pullDisable) ? flexDis : parseInt(css(me.pullBar, 'height'), 10)
+    me.pushHeight = (me.pushBar === null || pushDisable) ? flexDis : parseInt(css(me.pushBar, 'height'), 10)
 
+    me.disablePull(pullDisable)
+    me.disablePush(pushDisable)
     /*
      * 记录累计的滑动距离
      * */
@@ -98,11 +103,16 @@ export default class Scroll extends MoveDetection {
       })
       me.on(PULL_PUB_OVER, () => {
         me.pullLoading = 0
-        me.totalMoveY = me.totalMoveY - me.pullHeight
-        transform(me.content, {
-          y: me.totalMoveY,
-          duration: 0
-        })
+        /*
+         * 如果可视区域显示了指示器，加载完毕做指示器隐藏
+         * */
+        if (me.totalMoveY > 0) {
+          me.totalMoveY = me.totalMoveY - me.pullHeight
+          transform(me.content, {
+            y: me.totalMoveY,
+            duration: 0
+          })
+        }
       })
       me.on(PULL_PUB_ERROR, () => {
         me.pullLoading = 2
@@ -118,11 +128,16 @@ export default class Scroll extends MoveDetection {
       })
       me.on(PUSH_PUB_OVER, () => {
         me.pushLoading = 0
-        me.totalMoveY = me.totalMoveY + me.pushHeight
-        transform(me.content, {
-          y: me.totalMoveY,
-          duration: 0
-        })
+        /*
+        * 如果可视区域显示了指示器，加载完毕做指示器隐藏
+        * */
+        if (me.getMaxScrollDis() > me.totalMoveY) {
+          me.totalMoveY = me.totalMoveY + me.pushHeight
+          transform(me.content, {
+            y: me.totalMoveY,
+            duration: 0
+          })
+        }
       })
       me.on(PUSH_PUB_ERROR, () => {
         me.pushLoading = 2
@@ -287,12 +302,12 @@ export default class Scroll extends MoveDetection {
       /*
       * 已经在刷新
       * */
-      if (isUp && me.pullLoading === 1 || isDown && me.pushLoading === 1) {
+      if (isUp && (me.pullBar === null || me.pullDisable) || isDown && (me.pushBar === null || me.pushDisable)) {
+        res = 6
+      } else if (isUp && me.pullLoading === 1 || isDown && me.pushLoading === 1) {
         res = 4
       } else if (isUp && me.pullLoading === 2 || isDown && me.pushLoading === 2) {
         res = 5
-      } else if (isUp && me.pullBar === null || isDown && me.pushBar === null) {
-        res = 6
       } else {
         /*
         * 是否展示刷新
@@ -308,10 +323,10 @@ export default class Scroll extends MoveDetection {
   * */
   updateRefreshStatus (dirY) {
     let me = this
-    if (dirY > 0 && me.pullLoading === 0) {
+    if (dirY > 0 && me.pullLoading === 0 && !me.pullDisable) {
       me.pullLoading = 1
       me.trigger(PULL_PUB)
-    } else if (me.pushLoading === 0) {
+    } else if (dirY < 0 && me.pushLoading === 0 && !me.pushDisable) {
       me.pushLoading = 1
       me.trigger(PUSH_PUB)
     }
@@ -331,5 +346,36 @@ export default class Scroll extends MoveDetection {
       me.trigger(PUSH_PUB)
       me.updateDirectBar(-1)
     }
+  }
+  disablePull (status) {
+    this.disable('pull', status)
+  }
+  disablePush (status) {
+    this.disable('push', status)
+  }
+  disable (type, status) {
+    let me = this
+    let disabled = !!status
+    let visibility = disabled ? 'hidden' : 'visible'
+    let bar = null
+    if (type === 'pull') {
+      me.pullDisable = disabled
+      bar = me.pullBar
+    }
+    if (type === 'push') {
+      me.pushDisable = disabled
+      bar = me.pushBar
+    }
+    if (bar) {
+      css(bar, {
+        visibility: visibility
+      })
+    }
+  }
+  pullOver () {
+    this.trigger(PULL_PUB_OVER)
+  }
+  pushOver () {
+    this.trigger(PUSH_PUB_OVER)
   }
 }

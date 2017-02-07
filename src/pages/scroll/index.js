@@ -6,16 +6,27 @@ require('./index.less')
 
 /* eslint-disable no-unused-vars */
 document.addEventListener('DOMContentLoaded', () => {
-  let scroll = new Scroll({container: '.scroll-container'})
+  let scroll = new Scroll({container: '.scroll-container', pushDisable: true})
+  /*
+  * 下拉
+  * 停止下拉：scroll.disablePull(1)
+  * 加载结束：scroll.pullOver()
+  * */
   scroll.on('scroll.pull', () => {
     setTimeout(() => {
-      scroll.trigger('scroll.pull.error')
+      scroll.pullOver()
     }, 2000)
   })
+  /*
+  * 上拉
+  * 停止上拉：scroll.disablePush(1)
+  * 加载结束：scroll.pushOver()
+  * */
   scroll.on('scroll.push', () => {
     setTimeout(() => {
       alert('push loaded')
-      scroll.trigger('scroll.push.over')
+      scroll.pushOver()
+      scroll.disablePush(1)
     }, 2000)
   })
 }, false)
