@@ -62,8 +62,9 @@ export default class Tab extends Event {
       tap(tab, () => {
         let active = me.active
         let idx = parseInt(data(tab, 'idx'), 10)
+        let loaded = !!data(tab, 'loaded')
         me.setActive(idx)
-        me.trigger(TAB_CHANGED, active, idx)
+        me.trigger(TAB_CHANGED, active, idx, loaded)
       })
     })
   }
@@ -76,6 +77,9 @@ export default class Tab extends Event {
   _change (els, index) {
     let me = this
     let activeClass = me.activeClass
+    data(els[index], {
+      loaded: '1'
+    })
     each(els, (content, idx) => {
       index === idx ? addClass(content, activeClass) : removeClass(content, activeClass)
     })
