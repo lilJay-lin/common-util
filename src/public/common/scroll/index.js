@@ -160,7 +160,7 @@ export default class Scroll extends MoveDetection {
      * 通过首次移动来判断方向，只处理垂直方向滚动
      * */
     if (me.isMove === 0 && Math.abs(disY) > Math.abs(disX)) {
-      super.dealMove()
+      super.dealMove(evt, {disX, disY})
     }
     /*
      * 只处理有效触摸
@@ -172,7 +172,6 @@ export default class Scroll extends MoveDetection {
         y: me.fixedTotalMoveY(dis, me.pullHeight, me.pushHeight)
       })
     }
-    super.dealMove(evt, {disX, disY})
   }
   /*
    * 根据指示器展示内容判断是否需要触发更新
