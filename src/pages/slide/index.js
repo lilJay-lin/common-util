@@ -6,7 +6,7 @@ import Slide from 'common/slide'
 import {ready} from 'common/util/dom'
 
 ready(() => {
-  let slide = new Slide({container: '.slide-wrapper.vertical', direction: 'vertical'})
+  let slide = new Slide({container: '.slide-wrapper.vertical', direction: 'vertical', loop: true})
   slide = new Slide({container: '.slide-wrapper.horizon', direction: 'horizon'})
   console.dir(slide)
 })

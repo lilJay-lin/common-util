@@ -21,7 +21,7 @@ import {each} from '../util/collection'
 /*
 * 组合，处理具体滑动
 * 1. transform 滑动调用的移动方法
-* 2. dealEnd结束触摸
+* 2. setPosition
 * */
 class SlideAll {
   constructor (slide) {
@@ -64,7 +64,7 @@ class SlideAll {
   /*
   * 滑动结束触摸调用
   * */
-  dealEnd (dis, active, nextActive) {
+  setPosition (nextActive) {
     let me = this
     let slide = me.slide
     let options = null
@@ -73,7 +73,19 @@ class SlideAll {
     * 切换到正确item
     * */
     let totalMove = slide.getRelViewportVal() * nextActive * -1
-    options = slide.isHorizon() ? {x: totalMove, duration} : {y: totalMove, duration}
+    let callback = () => {
+      let last = slide.length - 1
+      let isLast = nextActive === last
+      let isFirst = nextActive === 0
+      if (slide.loop && (isFirst || isLast)) {
+        let active = isFirst ? last - 1 : 1
+        let totalMove = slide.getRelViewportVal() * active * -1
+        transform(slide.content, slide.isHorizon() ? {x: totalMove} : {y: totalMove})
+        me.totalMove = totalMove
+        slide.active = active
+      }
+    }
+    options = slide.isHorizon() ? {x: totalMove, duration, callback} : {y: totalMove, duration, callback}
     transform(slide.content, options)
     me.totalMove = totalMove
   }
@@ -88,9 +100,10 @@ class SlideAll {
  * @param{Number}flexDis 默认弹性距离
  * @param{Number}duration 默认切换效果时间间隔，单位秒
  * @param{Number}minMove 触发切页的最小移动距离
+ * @param{Number}loop 循环
  */
 export default class Slide extends MoveDetection {
-  constructor ({container = '.slide-wrapper', content = '.slide', item = '.slide-item', direction = HORIZON, active = 0, duration = 0.5, SlideMode = SlideAll, minMove = 150, flexDis = 50}) {
+  constructor ({container = '.slide-wrapper', content = '.slide', item = '.slide-item', direction = HORIZON, active = 0, duration = 0.5, SlideMode = SlideAll, minMove = 150, flexDis = 50, loop = false}) {
     super({container})
     let me = this
     if (!me.detectCnt) {
@@ -111,6 +124,7 @@ export default class Slide extends MoveDetection {
     me.minMove = minMove
     me.duration = duration
     me.flexDis = flexDis
+    me.loop = loop
     me.mode = new SlideMode(me)
     me.initView()
   }
@@ -142,8 +156,8 @@ export default class Slide extends MoveDetection {
       * 处理触摸结束效果
       * */
       let active = me.active
-      let newActive = Math.abs(dis) > me.minMove ? me.getActive(dis < 0) : me.active
-      me.mode.dealEnd(dis, active, newActive)
+      let newActive = Math.abs(dis) > me.minMove ? me.getActive(dis < 0) : active
+      me.mode.setPosition(newActive)
       me.active = newActive
     }
     super.dealEnd(evt)
@@ -160,12 +174,25 @@ export default class Slide extends MoveDetection {
     let me = this
     let {width, height} = me.viewport
     let props = me.isHorizon() ? {width: width + 'px', height: '100%'} : {width: '100%', height: height + 'px'}
+    let slideItems = me.slideItems
     /*
     * 设置item，宽高度
     * */
     each(me.slideItems, (item) => {
       css(item, props)
     })
+    /*
+     * 循环，头尾新增一个
+     * */
+    if (me.loop) {
+      let last = me.length - 1
+      me.content.appendChild(slideItems[0].cloneNode(true))
+      me.content.insertBefore(slideItems[last].cloneNode(true), slideItems[0])
+      me.slideItems = me.content.children
+      me.length = me.slideItems.length
+      me.active = me.active + 1
+      me.mode.setPosition(me.active)
+    }
     /*
     * 水平方向设置内容宽
     * */
