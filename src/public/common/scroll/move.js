@@ -46,8 +46,8 @@ export default class MoveDetection extends Event {
      * 可视内容宽高度
      * */
     me.viewport = {
-      w: parseInt(css(detectCnt, 'width'), 10),
-      h: parseInt(css(detectCnt, 'height'), 10)
+      width: parseInt(css(detectCnt, 'width'), 10),
+      height: parseInt(css(detectCnt, 'height'), 10)
     }
     /*
     * 返回事件注销方法

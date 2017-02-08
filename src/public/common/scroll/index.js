@@ -46,7 +46,7 @@ const retryClass = 'scroll-bar-retry'
  *
  * */
 export default class Scroll extends MoveDetection {
-  constructor ({container, content = '.scroll-content', height = null, flexRadio = 0.1, loadingRadio = 0.7, flexDis = 60, pullDisable = false, pushDisable = false}) {
+  constructor ({container = '.scroll-container', content = '.scroll-content', height = null, flexRadio = 0.1, loadingRadio = 0.7, flexDis = 60, pullDisable = false, pushDisable = false}) {
     super({container})
     let me = this
     if (!me.detectCnt) {
@@ -219,7 +219,7 @@ export default class Scroll extends MoveDetection {
     if (!me.contentHeight) {
       me.refreshContentHeight()
     }
-    return me.viewport.h - me.contentHeight
+    return me.viewport.height - me.contentHeight
   }
   /*
   * 设置内容高度
