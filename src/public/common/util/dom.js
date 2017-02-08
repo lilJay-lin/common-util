@@ -132,3 +132,8 @@ export const data = (el, props) => {
     })
   }
 }
+
+export const ready = (complete) => {
+  document.addEventListener('DOMContentLoaded', complete, false)
+}
+

@@ -63,11 +63,17 @@ const transformCssText = (prop, {x = 0, y = 0, z = 0}) => {
 /*
 * 设置节点动画动画样式
 * */
-export const transform = (el = null, {x = 0, y = 0, z = 0, duration = 0, delay = 0, timing = 'linear'}) => {
+export const transform = (el = null, {x = 0, y = 0, z = 0, duration = 0, delay = 0, timing = 'linear', callback = () => {}}) => {
   if (el === null || el.nodeType !== 1) {
     console.error('el参数必须为dom节点')
     return
   }
+  let cb = null
+  cb = () => {
+    callback()
+    el.removeEventListener(support.end.transitionEndName, cb, false)
+  }
+  el.addEventListener(support.end.transitionEndName, cb, false)
   css(el, {
     'transition-property': 'transform',
     'transition-duration': duration + 's',
