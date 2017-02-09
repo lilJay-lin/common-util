@@ -6,14 +6,12 @@
 * */
 import * as util from 'common/util'
 import * as touch from 'common/touch'
-
-/*
-* jquery依赖
-* */
-import Timeout from 'common/timeout'
+import tab from 'common/tab'
+import lazy from 'common/lazy'
 
 module.exports = {
   util,
   touch,
-  Timeout
+  tab,
+  lazy
 }
