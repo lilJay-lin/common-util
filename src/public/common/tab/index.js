@@ -16,7 +16,7 @@ const TAB_CHANGED = 'tab.changed'
 * @param {String} activeClass: 激活的选卡增加className
 * */
 export default class Tab extends Event {
-  constructor ({container = '.tabs', tab = '.tabs-bar', tabContent = '.tabs-content', active = 0, activeClass = 'active'}) {
+  constructor ({container = '.tabs', tab = '.tabs-bar', tabContent = '.tabs-content', active = 0, activeClass = 'active', init = () => {}}) {
     super()
     let ctn = null
     let me = this
@@ -45,6 +45,7 @@ export default class Tab extends Event {
     me.activeClass = activeClass
     if (me.tabs && me.tabContents) {
       me.initView()
+      init()
     }
   }
   initView () {
