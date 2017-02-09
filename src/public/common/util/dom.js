@@ -137,3 +137,10 @@ export const ready = (complete) => {
   document.addEventListener('DOMContentLoaded', complete, false)
 }
 
+/*
+* 元素可见
+* */
+export const isVisible = (el) => {
+  return !!el && el.nodeType === 1 && css(el, 'display') !== 'none' && css(el, 'visibility') !== 'hidden' && parseInt(css(el, 'opacity'), 10) !== 0
+}
+

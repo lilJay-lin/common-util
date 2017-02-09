@@ -10,6 +10,7 @@
 import {mockScrollEnd} from '../util/mock'
 import {each} from '../util/collection'
 import {isString} from '../util/object'
+import {isVisible as domVisible} from '../util/dom'
 
 let SCROLL = ''
 /*
@@ -124,6 +125,12 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
    * 计算是否展示图片
    * */
   const compute = () => {
+    /*
+    * 容器可见
+    * */
+    if (!domVisible(container)) {
+      return
+    }
     if (dynamic) {
       images = queryImage(container, imgSelector)
     }
@@ -154,10 +161,13 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   /*
   * 返回函数，执行可以注销懒加载
   * */
-  return () => {
-    removeComputeSpeed()
-    container.removeEventListener(SCROLL, dealBySpeed, false)
-    window.removeEventListener(SCROLL_END, compute, false)
-    window.removeEventListener(RESIZE, compute, false)
+  return {
+    refresh: compute,
+    destroy () {
+      removeComputeSpeed()
+      container.removeEventListener(SCROLL, dealBySpeed, false)
+      window.removeEventListener(SCROLL_END, compute, false)
+      window.removeEventListener(RESIZE, compute, false)
+    }
   }
 }
