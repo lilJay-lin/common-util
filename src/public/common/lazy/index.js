@@ -11,6 +11,7 @@ import {mockScrollEnd} from '../util/mock'
 import {each} from '../util/collection'
 import {isString} from '../util/object'
 import {isVisible as domVisible} from '../util/dom'
+import {isEmpty} from '../util/string'
 
 let SCROLL = ''
 /*
@@ -18,11 +19,16 @@ let SCROLL = ''
 * */
 const loadImg = ({el, attr, def, delay = 1000}) => {
   let src = el.getAttribute(attr)
+  let oldSrc = el.getAttribute('src')
+  oldSrc = isEmpty(oldSrc) ? def : oldSrc
   let error = () => {
+    /*
+    * 重新加入加载队列
+    * */
     setTimeout(() => {
       el.setAttribute(attr, src)
     }, delay)
-    el.setAttribute('src', def)
+    el.setAttribute('src', oldSrc)
     el.removeEventListener('error', error, false)
   }
   if (src) {

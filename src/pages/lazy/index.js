@@ -24,5 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
 }, false)
 
 window.addEventListener('scrollEnd', () => {
-  console.log('end')
+  alert('end')
 })
