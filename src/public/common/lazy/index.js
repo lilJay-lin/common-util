@@ -134,7 +134,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
     /*
     * 容器可见
     * */
-    if (!domVisible(container)) {
+    if (container !== document && !domVisible(container)) {
       return
     }
     if (dynamic) {
