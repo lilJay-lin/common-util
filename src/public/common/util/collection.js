@@ -29,7 +29,9 @@ export const each = (obj, iteratee, context) => {
   }
 }
 
-/*随机*/
+/*
+随机
+*/
 export const shuffle = (arr) => {
   if (!isArrayLike(arr)) {
     return arr
