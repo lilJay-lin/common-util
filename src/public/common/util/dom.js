@@ -144,3 +144,18 @@ export const isVisible = (el) => {
   return !!el && el.nodeType === 1 && css(el, 'display') !== 'none' && css(el, 'visibility') !== 'hidden' && parseInt(css(el, 'opacity'), 10) !== 0
 }
 
+export const show = (el) => {
+  css(el, {
+    display: 'block',
+    opacity: 1,
+    visibility: 'visible'
+  })
+}
+
+export const hide = (el) => {
+  css(el, {
+    display: 'none',
+    opacity: 0,
+    visibility: 'hidden'
+  })
+}
