@@ -63,7 +63,7 @@ const transformCssText = (prop, {x = 0, y = 0, z = 0}) => {
 /*
 * 设置节点动画动画样式
 * */
-export const transform = (el = null, {x = 0, y = 0, z = 0, duration = 0, delay = 0, timing = 'linear', callback = () => {}}) => {
+export const transform = (el = null, {prop = 'translate3d', x = 0, y = 0, z = 0, duration = 0, delay = 0, timing = 'linear', callback = () => {}}) => {
   if (el === null || el.nodeType !== 1) {
     console.error('el参数必须为dom节点')
     return
@@ -79,6 +79,6 @@ export const transform = (el = null, {x = 0, y = 0, z = 0, duration = 0, delay =
     'transition-duration': duration + 's',
     'transition-delay': delay + 's',
     'transition-timing-function': timing,
-    'transform': transformCssText('translate3d', {x, y, z})
+    'transform': transformCssText(prop, {x, y, z})
   })
 }
