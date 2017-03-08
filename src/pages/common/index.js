@@ -6,12 +6,15 @@
 * */
 import * as util from 'common/util'
 import * as touch from 'common/touch'
-import tab from 'common/tab'
+/*
+* import tab from 'common/tab'
+* */
+import scroll from 'common/scroll'
 import lazy from 'common/lazy'
 
 module.exports = {
   util,
   touch,
-  tab,
-  lazy
+  lazy,
+  scroll
 }

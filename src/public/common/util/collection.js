@@ -43,7 +43,7 @@ export const shuffle = (arr) => {
   var temp = 0
   for (; i > 0; i--) {
     r = Math.floor(Math.random() * i)
-    temp = tempArr[r];
+    temp = tempArr[r]
     tempArr[r] = tempArr[i - 1]
     tempArr[i - 1] = temp
   }
