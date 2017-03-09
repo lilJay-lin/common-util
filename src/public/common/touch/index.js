@@ -69,10 +69,6 @@ const dealTouch = (strategy) => {
     els = isArrayLike(els) ? els : [els]
 
     const touchStart = (evt) => {
-      /*
-      * 阻止默认行为
-      * */
-      evt.preventDefault()
       let touches = evt.touches
       if (touches.length > 1) {
         return
@@ -101,9 +97,11 @@ const dealTouch = (strategy) => {
           x: pageX,
           y: pageY
         }
-        if (Math.max(Math.abs(lastTouch.x - startTouch.x), Math.abs(lastTouch.y - startTouch.y)) > scrollSuppressionThreshold) {
-          evt.preventDefault()
-        }
+        /*
+        * if (Math.max(Math.abs(lastTouch.x - startTouch.x), Math.abs(lastTouch.y - startTouch.y)) > scrollSuppressionThreshold) {
+         evt.preventDefault()
+         }
+        * */
       }
     }
     const touchEnd = (evt) => {
