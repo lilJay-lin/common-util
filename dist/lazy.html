@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta content="yes" name="apple-touch-fullscreen"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <title></title>
+  <script>!function (n) {
+    var e = n.document, t = e.documentElement, dpr, scale;
+    var isAndroid = n.navigator.appVersion.match(/android/gi), isIPhone = n.navigator.appVersion.match(/iphone/gi), devicePixelRatio = n.devicePixelRatio;
+    if (isIPhone) {
+      if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+        dpr = 2
+      } else {
+        dpr = 1
+      }
+    } else {
+      dpr = 1
+    }
+    scale = 1 / dpr;
+    var metaEl = e.createElement("meta");
+    var scale = dpr === 1 ? 1 : 0.5;
+    metaEl.setAttribute("name", "viewport");
+    metaEl.setAttribute("content", "initial-scale=" + scale + ", maximum-scale=" + scale + ", minimum-scale=" + scale + ", user-scalable=no");
+    if (t.firstElementChild) {
+      t.firstElementChild.appendChild(metaEl)
+    } else {
+      var wrap = e.createElement("div");
+      wrap.appendChild(metaEl);
+      e.write(wrap.innerHTML)
+    }
+    var i = 1440, d = i / 200, rem, o = "orientationchange" in n ? "orientationchange" : "resize", a = function () {
+      var n = t.clientWidth || 320;
+      n > i && (n = i), t.style.fontSize = (rem = n / d) + "px"
+    };
+    n.px2rem = function (px) {
+      var v = parseFloat(px);
+      return v / rem
+    };
+    n.rem2px = function (r) {
+      var v = parseFloat(r);
+      return rem * v
+    };
+    e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener("DOMContentLoaded", a, !1))
+  }(window);</script>
+  <style>
+    img{
+      width: 5rem;
+      display: block;
+      height: 3rem;
+    }
+  </style>
+<link href="./static/css/style.css?89c18f77a3280f16eef5" rel="stylesheet"/></head>
+<body>
+<div class="tabs">
+  <div class="tabs-bar">
+    <div>
+      bar 1
+    </div>
+    <div>
+      bar 2
+    </div>
+    <div>
+      bar 3
+    </div>
+  </div>
+  <div class="tabs-content">
+    <div   id="child">
+      <div style="width: 100%;">
+        <img src="xxxHTMLLINKxxx0.7454387007585610.022846590451014892xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img3.png"/>
+        <img src="xxxHTMLLINKxxx0.90648451884663730.3119063864227809xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img2.png"/>
+        <img src="xxxHTMLLINKxxx0.46226095109433760.25570366093791885xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img1.png"/>
+        <img src="xxxHTMLLINKxxx0.48490908676136080.17963208566984656xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img3.png"/>
+        <img src="xxxHTMLLINKxxx0.421477991481121750.18973468289590345xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img2.png"/>
+        <img src="xxxHTMLLINKxxx0.4878716170262660.6478090692672709xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img1.png"/>
+      </div>
+    </div>
+    <div  id="child2">
+      <div style="width: 100%;" >
+        <img src="xxxHTMLLINKxxx0.79097319274969680.456104442180566xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img3.png"/>
+        <img src="xxxHTMLLINKxxx0.28150987190660050.10078665521837515xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img2.png"/>
+        <img src="xxxHTMLLINKxxx0.73884784830823260.04507906346069235xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img1.png"/>
+        <img src="xxxHTMLLINKxxx0.75719191387068770.39087746296980375xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img3.png"/>
+        <img src="xxxHTMLLINKxxx0.83959203357418040.059560036601080446xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img2.png"/>
+        <img src="xxxHTMLLINKxxx0.124654763876884010.6360550950516424xxx" alt="" data-lazy="http://mmdm.aspire-tech.com/fx/demo/aoyun/img/img1.png"/>
+      </div>
+    </div>
+    <div>
+      content 3
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="./static/js/lazy.js?89c18f77a3280f16eef5"></script></body>
+</html>

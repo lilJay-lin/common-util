@@ -1,0 +1,1022 @@
+/*
+ normalize.css
+*/
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  height: 0;
+}
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  /* 2 */
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+/*
+ mixins.less
+*/
+/*文字模糊遮罩 .font-gradient-vertial(rgba(249, 249, 249, 0.6), rgba(249, 249, 249, 1), rgba(249, 249, 249, 1),rgba(249, 249, 249, 1))*/
+/* ==========================================================================
+   divider
+ ============================================================================ */
+/*
+  文字字体 、颜色
+*/
+/*.font(@fontSize: 0.2rem, @color: @black){
+  font-size: @fontSize;
+  color: @color;
+}*/
+/*设置背景*/
+/*平分布局*/
+/*遮罩*/
+/*
+  垂直居中
+*/
+.vertical-align-middle {
+  vertical-align: middle;
+  display: inline-block;
+}
+/*
+  单页
+*/
+/*
+ meida
+*/
+/*
+  不使用device-width,1080p之类device-width太大，使用viewpory layout width
+  720 100标准
+  使用大一倍的 1440 200
+  devicePixelRatio >=2 , meta init-scale = 0.5
+*/
+@media only screen and (min-width: 280px) {
+  html {
+    font-size: 38.88888889px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 320px) {
+  html {
+    font-size: 44.44444444px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 360px) {
+  html {
+    font-size: 50px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 400px) {
+  html {
+    font-size: 55.55555556px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 440px) {
+  html {
+    font-size: 61.11111111px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 480px) {
+  html {
+    font-size: 66.66666667px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 520px) {
+  html {
+    font-size: 72.22222222px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 560px) {
+  html {
+    font-size: 77.77777778px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 83.33333333px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 640px) {
+  html {
+    font-size: 88.88888889px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 680px) {
+  html {
+    font-size: 94.44444444px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 720px) {
+  html {
+    font-size: 100px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 760px) {
+  html {
+    font-size: 105.55555556px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 800px) {
+  html {
+    font-size: 111.11111111px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 840px) {
+  html {
+    font-size: 116.66666667px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 880px) {
+  html {
+    font-size: 122.22222222px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 920px) {
+  html {
+    font-size: 127.77777778px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 960px) {
+  html {
+    font-size: 133.33333333px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1000px) {
+  html {
+    font-size: 138.88888889px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1040px) {
+  html {
+    font-size: 144.44444444px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1080px) {
+  html {
+    font-size: 150px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1120px) {
+  html {
+    font-size: 155.55555556px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1160px) {
+  html {
+    font-size: 161.11111111px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 166.66666667px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1240px) {
+  html {
+    font-size: 172.22222222px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1280px) {
+  html {
+    font-size: 177.77777778px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1320px) {
+  html {
+    font-size: 183.33333333px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1360px) {
+  html {
+    font-size: 188.88888889px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1400px) {
+  html {
+    font-size: 194.44444444px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+@media only screen and (min-width: 1440px) {
+  html {
+    font-size: 200px;
+  }
+}
+/*  @media only screen and (min-width: @width) and (-webkit-min-device-pixel-ratio: 2){
+    html{
+      font-size: @width * @standard-font-size * 2 / @standard-width ;
+    }
+  }*/
+/*
+  针对IPHONE手机做处理
+*/
+@media only screen and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 88.88888889px;
+  }
+}
+@media only screen and (device-width: 375px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 104.16666667px;
+  }
+}
+@media only screen and (device-width: 414px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 115px;
+  }
+}
+@media only screen and (device-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 213.33333333px;
+  }
+}
+/*
+ base
+*/
+/*
+ base css
+*/
+/*
+ normalize.css
+*/
+/*
+Segoe UI - Windows UI 字体（从 Windows Vista 开始使用）；
+Helvetica Neue 是 iOS7 及 OSX 10.10 UI 字体（在部分文字垂直居中的场景有一些小问题，暂时先使用 Lucida Grande）；
+有些 Windows 用户安装了丽黑字体，丽黑字体在 Windows 上渲染出来很模糊，所以把微软雅黑放在苹果丽黑之前；
+FreeSans - 包括 Ubuntu 之类的 Linux 分发版包含的字体。
+*/
+body,
+html {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  line-height: 1.2;
+}
+html,
+body,
+ul,
+li,
+div,
+span,
+img,
+a,
+p,
+input,
+textarea,
+button,
+section,
+article,
+header,
+footer,
+aside {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+  position: relative;
+  background: #fff;
+  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #000;
+  font-size: 0.2rem;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /*部分机型text-overflow:ellipse会出现问题*/
+  /*  text-rendering: optimizeLegibility;  /!* 1 *!/
+    -webkit-font-smoothing: antialiased; /!* 2 *!/
+    -moz-osx-font-smoothing: grayscale;  /!* 3 Default: auto *!/
+    -moz-font-feature-settings: "liga", "kern"*/
+}
+img {
+  width: 100%;
+  height: auto;
+}
+a {
+  text-decoration: none;
+}
+a:hover,
+a:visited,
+a:active,
+a:link {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 100%;
+}
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.25em;
+}
+/*
+Layout
+*/
+/*
+  基于flex网格系统
+  12等分
+*/
+.grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.grid:before,
+.grid:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.grid-vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.grid-top {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.grid-middle {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.grid-bottom {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.grid-stretch {
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+.grid-baseline {
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+.grid-left {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.grid-center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.grid-right {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.grid-between {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.grid-around {
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+/*有兼容问题*/
+.grid-wrap {
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.grid-cell {
+  display: block;
+}
+.grid-col-flex {
+  width: 0%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.grid-col-1 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 8.33333333%;
+      -ms-flex: 0 0 8.33333333%;
+          flex: 0 0 8.33333333%;
+}
+.grid-col-2 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 16.66666667%;
+      -ms-flex: 0 0 16.66666667%;
+          flex: 0 0 16.66666667%;
+}
+.grid-col-3 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 25%;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+}
+.grid-col-4 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 33.33333333%;
+      -ms-flex: 0 0 33.33333333%;
+          flex: 0 0 33.33333333%;
+}
+.grid-col-5 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 41.66666667%;
+      -ms-flex: 0 0 41.66666667%;
+          flex: 0 0 41.66666667%;
+}
+.grid-col-6 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+}
+.grid-col-7 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 58.33333333%;
+      -ms-flex: 0 0 58.33333333%;
+          flex: 0 0 58.33333333%;
+}
+.grid-col-8 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 66.66666667%;
+      -ms-flex: 0 0 66.66666667%;
+          flex: 0 0 66.66666667%;
+}
+.grid-col-9 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 75%;
+      -ms-flex: 0 0 75%;
+          flex: 0 0 75%;
+}
+.grid-col-10 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 83.33333333%;
+      -ms-flex: 0 0 83.33333333%;
+          flex: 0 0 83.33333333%;
+}
+.grid-col-11 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 91.66666667%;
+      -ms-flex: 0 0 91.66666667%;
+          flex: 0 0 91.66666667%;
+}
+/* ==========================================================================
+   Component: AVG Grid
+ ============================================================================ */
+[class*="avg-"] {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+[class*="avg-"]:before,
+[class*="avg-"]:after {
+  content: " ";
+  display: table;
+}
+[class*="avg-"]:after {
+  clear: both;
+}
+[class*="avg-"] > li {
+  display: block;
+  height: auto;
+  float: left;
+}
+/*
+  button.less
+*/
+/*
+  按钮 mixins
+*/
+/*客户端原下载按钮样式*/
+/*下载*/
+/*打开*/
+/*安装 更新*/
+/*.listbtn-4(){
+  .listbtn-4{
+    .btnStyle(#f7c58c, #f9bc76, #fff,  #ffefdb);
+  }
+}*/
+/*已安装*/
+/*免流量更新*/

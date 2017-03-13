@@ -9,16 +9,16 @@ import * as touch from 'common/touch'
 /*
 * import tab from 'common/tab'
  import scroll from 'common/scroll'
- import promise from 'common/promise'
 */
+import promise from 'common/promise'
 import lazy from 'common/lazy'
 
 module.exports = {
   util,
   touch,
-  lazy
+  lazy,
   /*
    Scroll: scroll,
-   Promise: promise
    */
+  Promise: promise
 }
