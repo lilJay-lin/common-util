@@ -28,9 +28,12 @@ import * as tpl from './tpl'
 import * as url from './url'
 import * as dom from './dom'
 import * as animate from './animate'
+import * as cookie from './cookie'
 
 var arrs = [object, collection, string, date, tpl, url, dom, animate]
-var util = {}
+var util = {
+  cookie
+}
 collection.each(arrs, (obj) => {
   collection.each(obj, (fn, key) => {
     util[key] = fn
