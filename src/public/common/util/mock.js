@@ -2,6 +2,7 @@
  * Created by linxiaojie on 2017/1/18.
  */
 import {isString, isArray} from '../util/object'
+import {requestAnimationFrame, cancelAnimationFrame} from '../util/help'
 /*
 * 模拟触发scrollEnd事件
 * @param{window | string | nodeType}el
@@ -29,9 +30,6 @@ export const mockScrollEnd = ({selector, mobile = false, radio = 20}) => {
   const SCROLL = mobile ? 'touchmove' : 'scroll'
   let scrollEnd = document.createEvent('HTMLEvents')
   scrollEnd.initEvent('scrollEnd', true, false)
-  if (!window.requestAnimationFrame) {
-    throw new Error('requestAnimationFrame if undefined')
-  }
   const frame = () => {
     if (lastCtr !== ctr) {
       diff++
@@ -54,9 +52,7 @@ export const mockScrollEnd = ({selector, mobile = false, radio = 20}) => {
   return () => {
     el.removeEventListener(SCROLL, scroll, false)
     cancel = 1
-    if (window.cancelRequestAnimationFrame) {
-      window.cancelRequestAnimationFrame(id)
-    }
+    cancelAnimationFrame(id)
   }
 }
 
