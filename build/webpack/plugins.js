@@ -4,6 +4,7 @@
 const path = require('path')
 const util = require('../util')
 const dirVars = require('./dir-vars')
+const pkg = require('../../package.json')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -21,6 +22,7 @@ const configPlugins = [
       warnings: false
     }
   }),
+  new webpack.BannerPlugin("Author: liljay \n Version: " + pkg.version),
   /*new webpack.optimize.OccurrenceOrderPlugin(),*/
   /*提取公共代码*/
   //new webpack.optimize.CommonsChunkPlugin({
