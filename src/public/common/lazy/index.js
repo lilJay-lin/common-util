@@ -124,7 +124,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   * 图片可见区域
   * */
   const isVisible = ({top, bottom}) => {
-    let show = top < vpHeight && bottom > vpBottom
+    let show = !(top > vpHeight || bottom < vpBottom)
     return show
   }
   /*
