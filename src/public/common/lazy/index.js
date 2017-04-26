@@ -10,9 +10,8 @@
 import {mockScrollEnd} from '../util/mock'
 import {each} from '../util/collection'
 import {isString} from '../util/object'
-import {isVisible as domVisible} from '../util/dom'
+import {isVisible as domVisible, css} from '../util/dom'
 import {isEmpty} from '../util/string'
-
 let SCROLL = ''
 /*
 * 展示图片
@@ -112,7 +111,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
       throw new Error('el 参数类型错误，请检查')
     }
     let rect = container.getBoundingClientRect()
-    vpHeight = rect.top + rect.height
+    vpHeight = rect.top + parseInt(css(container, 'height'), 10)
     vpBottom = rect.top
   }
   images = queryImage(container, imgSelector)
