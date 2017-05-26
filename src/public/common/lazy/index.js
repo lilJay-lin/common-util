@@ -92,8 +92,9 @@ const queryImage = (container, selector) => {
 * @param{boolean} dynamic: 是否动态加载所有需要做懒加载的节点
 * @param{number} speed: 只在指定频率内的滚动才做懒加载
 * @param{boolean} mobile: 是否使用手机模式，这里不使用平台来判断强制使用，因为移动端有时候也不想用手机模式（touchmove）
+* @param{boolean} stop: 停止懒加载
 * */
-export default ({attr = 'data-lazy', def = 'default.png', container = null, dynamic = true, speed = 20, mobile = false}) => {
+export default ({attr = 'data-lazy', def = 'default.png', container = null, dynamic = true, speed = 20, mobile = false, stop = false}) => {
   let vpHeight = 0
   let vpBottom = 0
   let imgSelector = '[' + attr + ']'
@@ -133,7 +134,7 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
     /*
     * 容器可见
     * */
-    if (container !== document && !domVisible(container)) {
+    if (container !== document && !domVisible(container) || stop) {
       return
     }
     if (dynamic) {
@@ -168,6 +169,9 @@ export default ({attr = 'data-lazy', def = 'default.png', container = null, dyna
   * */
   return {
     refresh: compute,
+    setStatue: (status) => {
+      stop = !!status
+    },
     destroy () {
       removeComputeSpeed()
       container.removeEventListener(SCROLL, dealBySpeed, false)
